@@ -1,0 +1,73 @@
+AWS GLACIER & SNS POWERSHELL SCRIPT CMDLETS
+AUTHOR: DAMIAN KARLSON, @SIXFOOTDAD
+DATE: NOVEMBER 2012
+VERSION: 1.0
+
+######################################
+
+LICENSING
+** AWS GLACIER & SNS POWERSHELL SCRIPT CMDLETS (glacier_cmdlets.psm1) written by Damian Karlson are licensed under under Apache 2.0.
+** The AWS SDK for .NET is licensed under Apache 2.0. More info: http://aws.amazon.com/sdkfornet/faqs/#13
+
+NOTICE
+Copyright 2012 Damian Karlson
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at 
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+######################################
+
+API & SDK SUPPORTED VERSIONS
+** Supports AWS Glacier API Version 2012-06-01
+** Supports AWS SNS API Version 2010-03-31
+** Supports AWS .NET SDK version 1.5.8, released November 14, 2012 2:52 AM GMT. Release notes: http://aws.amazon.com/releasenotes/4380692763733545
+
+AWS, SDK for .NET API, Glacier, SNS documentation
+** AWS: http://aws.amazon.com/documentation/
+** SDK for .NET API: http://docs.amazonwebservices.com/sdkfornet/latest/apidocs/Index.html
+** Glacier: http://aws.amazon.com/documentation/glacier/
+** SNS: http://aws.amazon.com/documentation/sns/
+
+######################################
+
+FEATURES:
+(mostly) Fully featured AWS Glacier & SNS PowerShell client.
+
+** Connect to AWS Glacier & SNS using "root" AWS account. Connection is made to a single region endpoint at a time.
+** Get, New, Remove Glacier vault(s)
+** Remove Glacier archive(s)
+** Get, Set, Remove Glacier vault notification(s)
+** Get, New Glacier job(s) (inventory or archive jobs)
+** Get Glacier job output (download inventory or archive)
+** New Glacier upload (add archive to vault)
+** Get, Set, New, Remove SNS Topics
+** Get, New, Remove SNS subscriptions
+** SNS subscription endpoints & protocols: email, email-json, SMS
+
+API CAPABILITIES NOT INCLUDED:
+** Access control using Amazon IAM (Identity and Access Management)
+** MFA (Multi-factor authentication)
+** SNS: Add permission, remove permission, subscription endpoints and protocols HTTP/HTTPS/SQS, scripted subscription confirmation, subscription delivery policies, topic policy and delivery policy
+** Glacier: partial archive retrieval, multipart uploads
+
+######################################
+
+PREREQUISITES:
+** PowerShell v2 or v3
+** AWS SDK for .Net: http://sdk-for-net.amazonwebservices.com/latest/AWSToolsAndSDKForNet.msi
+** Active AWS account with Glacier/SNS, AWS Access Key ID, AWS Secret Access Key credentials from https://portal.aws.amazon.com/gp/aws/securityCredentials
+
+INSTALL:
+** Download glacier_cmdlets.psm1. From a PowerShell command window, run the following: Import-Module <path to glacier_cmdlets.psm1>
+** You may also add the Import-Module command to your $PROFILE to auto-load the module when you open a PowerShell command window.
+
+CMDLET HELP:
+** You can view all the cmdlets in the module by running this: (Get-Module glacier_cmdlets).ExportedCommands
+** You can also view individual cmdlet help by running: Get-Help <cmdlet>. The usual parameters apply, -detailed, -full, -examples
+
+TROUBLESHOOTING:
+** The AWS SDK for .NET requires administrator privileges to install. See http://aws.amazon.com/releasenotes/4380692763733545 for more information, and change the path to the DLL using the procedure below.
+** The cmdlet expects that the SDK DLL is in the default installation path for Windows 7 (C:\Program Files (x86)\AWS SDK for .NET\bin\AWSSDK.dll) or the default installation path for Windows XP (C:\Program Files\AWS SDK for .NET\bin\AWSSDK.dll). If it hasn't been installed to the default location, please comment out lines 54-59 in glacier_cmdlets.psm1 by appending a # to the beginning of each of those lines. Add a new line with the following command: Add-Type -Path "<path>\AWS SDK for .NET\bin\AWSSDK.dll"
+** This cmdlet is unsigned; if PowerShell complains about the execution policy on your machine, run the following command to set the execution policy to Unrestriced (providing you are comfortable with doing so, and understand the potential risk): Set-ExecutionPolicy -ExecutionPolicy Unrestricted
+** Changing PowerShell execution policy requires administrator privileges. Additionally, see http://technet.microsoft.com/en-us/library/ee176961.aspx for more information on PowerShell's ExecutionPolicy.
