@@ -1,4 +1,9 @@
 ﻿<#
+AWS GLACIER & SNS POWERSHELL SCRIPT CMDLETS
+AUTHOR: DAMIAN KARLSON, @SIXFOOTDAD
+DATE: NOVEMBER 2012
+VERSION: 1.1
+
 NOTICE
 Copyright 2012 Damian Karlson
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at 
