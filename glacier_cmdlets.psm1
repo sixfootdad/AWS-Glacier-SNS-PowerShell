@@ -52,15 +52,15 @@ function Connect-AWSGlacier {
 	)
 	try {
 		$env = Get-ChildItem Env:
-		if (Test-Path -LiteralPath "C:\Program Files\AWS SDK for .NET\bin\AWSSDK.dll") {
-			Add-Type -Path "C:\Program Files\AWS SDK for .NET\bin\AWSSDK.dll"
-		} elseif (Test-Path -LiteralPath "C:\Program Files (x86)\AWS SDK for .NET\bin\AWSSDK.dll") {
-			Add-Type -Path "C:\Program Files (x86)\AWS SDK for .NET\bin\AWSSDK.dll"
+		if (Test-Path -LiteralPath ${env:ProgramFiles}"\AWS SDK for .NET\bin\AWSSDK.dll") {
+			Add-Type -Path ${env:ProgramFiles}"\AWS SDK for .NET\bin\AWSSDK.dll"
+		} elseif (Test-Path -LiteralPath ${env:ProgramFiles(x86)}"\AWS SDK for .NET\bin\AWSSDK.dll") {
+			Add-Type -Path ${env:ProgramFiles(x86)}"\AWS SDK for .NET\bin\AWSSDK.dll"
 		}
 	}
 	catch {
 		Write-Host $_.Exception.Message
-		Write-Host "The AWS SDK DLL for .NET was expected at '$env:ProgramFiles\AWS SDK for .NET\bin\AWSSDK.dll' or '$env:ProgramFiles(x86)\AWS SDK for .NET\bin\AWSSDK.dll' and was not found. Please see the README for details."
+		Write-Host "The AWS SDK DLL for .NET was not found. Please see the README for details."
 		return
 	}
 	$global:AWSSecretAccessKey = $AWSSecretAccessKey | ConvertTo-SecureString -AsPlainText -Force
